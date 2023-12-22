@@ -1,4 +1,3 @@
-const http = require("http");
 const express = require("express");
 const app = express();
 const httpServer = http.createServer(app); //server creation by http inbuit node module;
@@ -36,7 +35,7 @@ app.use('/availability', availableRouter);
 
 
 //server code for start or live my server at defined port;
-httpServer.listen(PORT, async () => {
+app.listen(PORT, async () => {
     try {
         await connection;
         console.log("connected to DB");
