@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const httpServer = http.createServer(app); //server creation by http inbuit node module;
 const { connection } = require("./Configs/Configs");
 require("dotenv").config();
 const cors = require("cors");
