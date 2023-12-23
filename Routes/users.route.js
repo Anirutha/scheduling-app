@@ -14,11 +14,11 @@ userRouter.post('/register', async (req, res) => {
             } else {
                 const user = new UserModel({ name, password: secure_password });
                 await user.save();
-                res.status(201).send({ msg: 'Registered Successfully' });
+                res.status(201).send({ data: 'Registered Successfully' });
             }
         })
     } catch (err) {
-        res.status(404).send({ msg: "Registation failed" });
+        res.status(404).send({ data: "Registation failed" });
     }
 });
 
@@ -32,16 +32,16 @@ userRouter.post('/login', async (req, res) => {
             bcrypt.compare(password, user[0].password, async (err, results) => {
                 if (results) {
                     let token = jwt.sign({ id: user[0]._id, name: user[0].name }, process.env.secret_key, { expiresIn: '1h' });
-                    res.send({ msg: "Login Successfully", token, user_id: user[0]._id });
+                    res.send({ data: "Login Successfully", token, user_id: user[0]._id });
                 } else {
-                    res.status(201).send({ msg: "Wrong Password" });
+                    res.status(201).send({ data: "Wrong Password" });
                 }
             })
         } else {
-            res.status(201).send({ msg: "Wrong Username" });
+            res.status(201).send({ data: "Wrong Username" });
         }
     } catch (err) {
-        res.status(404).send({ msg: "Login failed" });
+        res.status(404).send({ data: "Login failed" });
     }
 });
 
